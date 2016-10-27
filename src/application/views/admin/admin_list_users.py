@@ -10,12 +10,12 @@ from google.appengine.runtime.apiproxy_errors import CapabilityDisabledError
 from forms import UserForm
 from models import UserModel
 
-from decorators import login_required
+from decorators import registration_required
 from decorators import admin_required
 
 class AdminListUsers(View):
 
-    @login_required
+    @registration_required
     def dispatch_request(self):
         registered_users = UserModel.query()
         form = UserForm()
