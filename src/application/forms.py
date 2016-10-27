@@ -24,3 +24,8 @@ ExampleForm = model_form(ExampleModel, wtf.Form, field_args={
     'example_name': dict(validators=[validators.Required()]),
     'example_description': dict(validators=[validators.Required()]),
 })
+
+class UserForm(wtf.Form):
+    user_email = wtf.TextField('Email', validators=[validators.Required()])
+    user_first_name = wtf.TextField('First Name', validators=[validators.Required()])
+    user_last_name = wtf.TextField('Last Name', validators=[validators.Required()])

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Edit User</h3>
+    <form id="edit-user" class="well"
+          action="{{ url_for('edit_user', user_id=user.key.id()) }}" method="post" accept-charset="utf-8">
+        <fieldset>
+            {{ form.hidden_tag() }}
+            <input type="hidden" name="mode" value="edit" />
+            <div class="control-group">
+                <div class="control-label">{{ form.user_first_name.label }}</div>
+                <div class="controls">
+                    {{ form.user_first_name|safe }}
+                    {% if form.user_first_name.errors %}
+                        <ul class="errors">
+                            {% for error in form.user_first_name.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div>&nbsp;</div>
+            <div class="control-group">
+                <div class="control-label">{{ form.user_last_name.label }}</div>
+                <div class="controls">
+                    {{ form.user_last_name|safe }}
+                    {% if form.user_last_name.errors %}
+                        <ul class="errors">
+                            {% for error in form.user_last_name.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div>&nbsp;</div>
+            <div class="control-group">
+                <div class="control-label">{{ form.user_email.label }}</div>
+                <div class="controls">
+                    {{ form.user_email|safe }}
+                    {% if form.user_email.errors %}
+                        <ul class="errors">
+                            {% for error in form.user_email.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div>&nbsp;</div>
+            <div class="control-group">
+                <div class="controls">
+                    <input class="btn btn-primary" type="submit" value="Save Changes"/>
+                    <a class="btn cancel" href="{{ url_for('list_users') }}">Cancel</a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+{% endblock content %}
