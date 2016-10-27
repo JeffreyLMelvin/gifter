@@ -26,7 +26,7 @@ def registration_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
         current_user = users.get_current_user()
-        if not current_user:
+        if current_user:
             registered_users = UserModel.query()
             if not current_user.email() in [x.user_email for x in registered_users]:
                 abort(401)
