@@ -18,9 +18,9 @@ class AdminEditUser(View):
         form = UserForm(obj=user)
         if request.method == "POST":
             if form.validate_on_submit():
-                user.first_name = form.data.get('user_first_name')
-                user.last_name = form.data.get('user_last_name')
-                user.email = form.data.get('user_email')
+                user.user_first_name = form.data.get('user_first_name')
+                user.user_last_name = form.data.get('user_last_name')
+                user.user_email = form.data.get('user_email')
                 user.put()
                 flash(u'User %s successfully saved.' % user_id, 'success')
                 return redirect(url_for('list_users'))

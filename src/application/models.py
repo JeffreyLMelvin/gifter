@@ -17,6 +17,6 @@ class ExampleModel(ndb.Model):
 
 
 class UserModel(ndb.Model):
-    email = ndb.StringProperty(required=True)
-    first_name = ndb.StringProperty(required=True)
-    last_name = ndb.StringProperty(required=True)
+    user_email = ndb.StringProperty(required=True)
+    user_first_name = ndb.StringProperty(required=True)
+    user_last_name = ndb.StringProperty(required=True)
