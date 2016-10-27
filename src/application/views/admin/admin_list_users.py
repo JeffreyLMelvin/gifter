@@ -21,7 +21,12 @@ class AdminListUsers(View):
         form = UserForm()
         if form.validate_on_submit():
             self.save_entry()
-        return render_template('list_users.html', users=registered_users, form=form)
+        return render_template(
+            'list_users.html',
+            users=registered_users,
+            form=form,
+            is_admin=users.is_current_user_admin()
+        )
 
     @admin_required
     def save_entry(self):
