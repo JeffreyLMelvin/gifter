@@ -22,7 +22,7 @@ def login_required(func):
     return decorated_view
 
 
-def registration_required(func)
+def registration_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
         current_user = users.get_current_user()
