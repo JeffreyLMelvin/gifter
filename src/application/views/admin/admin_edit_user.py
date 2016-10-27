@@ -5,7 +5,7 @@ from flask.views import View
 from flask import flash, redirect, url_for, render_template, request
 
 from forms import UserForm
-from models import UserForm
+from models import UserModel
 
 from decorators import admin_required
 
