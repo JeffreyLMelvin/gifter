@@ -17,17 +17,17 @@ class AdminListUsers(View):
 
     @login_required
     def dispatch_request(self):
-        users = UserModel.query()
+        registered_users = UserModel.query()
         form = UserForm()
         if form.validate_on_submit():
-            self.save_entry
-        return render_template('list_users.html', users=users, form=form)
+            self.save_entry()
+        return render_template('list_users.html', users=registered_users, form=form)
 
     @admin_required
     def save_entry(self):
         form = UserForm
         user = UserModel(
-            email=form.eamil.data,
+            email=form.user_email.data,
             first_name=form.user_first_name.data,
             last_name=form.user_first_name.data
         )
