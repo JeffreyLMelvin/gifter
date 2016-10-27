@@ -25,7 +25,7 @@ class AdminListUsers(View):
 
     @admin_required
     def save_entry(self):
-        form = UserForm
+        form = UserForm()
         user = UserModel(
             email=form.user_email.data,
             first_name=form.user_first_name.data,
