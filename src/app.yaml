@@ -42,3 +42,4 @@ handlers:
 - url: .*
   script: run.application.app
   secure: always
+  login: required
