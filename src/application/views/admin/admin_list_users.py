@@ -29,7 +29,7 @@ class AdminListUsers(View):
         user = UserModel(
             email=form.user_email.data,
             first_name=form.user_first_name.data,
-            last_name=form.user_first_name.data
+            last_name=form.user_last_name.data
         )
         try:
             user.put()
