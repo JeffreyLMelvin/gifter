@@ -29,7 +29,7 @@ app.add_url_rule('/_ah/warmup', 'public_warmup', view_func=PublicWarmup.as_view(
 
 app.add_url_rule('/', 'public_index', view_func=PublicIndex.as_view('public_index'))
 
-app.add_url_rule('/registry', 'list_users', view_func=AdminListUsers.as_view('list_users'))
+app.add_url_rule('/registry', 'list_users', view_func=AdminListUsers.as_view('list_users'), methods=['GET', 'POST'])
 
 
 
