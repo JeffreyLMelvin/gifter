@@ -63,15 +63,15 @@
                 var email = form.find('#user_email').val();
                 if (!(first_name)) {
                     evt.preventDefault();
-                    Utils.renderFieldErrorTooltip('#first_name', 'Name is required', 'right');
+                    Utils.renderFieldErrorTooltip('#user_first_name', 'Name is required', 'right');
                 }
                 if (!(last_name)) {
                     evt.preventDefault();
-                    Utils.renderFieldErrorTooltip('#last_name', 'Name is required', 'right');
+                    Utils.renderFieldErrorTooltip('#user_last_name', 'Name is required', 'right');
                 }
                 if (!(email)) {
                     evt.preventDefault();
-                    Utils.renderFieldErrorTooltip('#email', 'Email is required', 'right');
+                    Utils.renderFieldErrorTooltip('#user_email', 'Email is required', 'right');
                 }
             },
             init: function () {
