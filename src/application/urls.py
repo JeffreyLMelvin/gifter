@@ -13,6 +13,8 @@ from application.views.public.public_index import PublicIndex
 # from application.views.public.public_say_hello import PublicSayHello
 
 from application.views.admin.admin_list_users import AdminListUsers
+from application.views.admin.admin_edit_user import AdminEditUser
+from application.views.admin.admin_delete_user import AdminDeleteUser
 
 # from application.views.admin.admin_list_examples import AdminListExamples
 # from application.views.admin.admin_list_examples_cached import AdminListExamplesCached
@@ -31,7 +33,9 @@ app.add_url_rule('/', 'public_index', view_func=PublicIndex.as_view('public_inde
 
 app.add_url_rule('/registry', 'list_users', view_func=AdminListUsers.as_view('list_users'), methods=['GET', 'POST'])
 
+app.add_url_rule('/registry/<int:user_id>/edit', 'edit_user', view_func=AdminEditUser.as_view('edit_user'), methods=['GET', 'POST'])
 
+app.add_url_rule('/registry/<int:user_id>/delete', 'delete_user', view_func=AdminDeleteUser.as_view('delete_user'), methods=['POST'])
 
 
 
