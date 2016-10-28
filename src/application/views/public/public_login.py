@@ -2,18 +2,19 @@ from uuid import uuid4
 
 from flask.views import View
 
+from flask import redirect
 from flask import render_template
 from flask import session
 
 from google.appengine.ext import ndb
 
-from forms import RequestTokenForm
+from forms import TokenForm
 from models import UserModel
 
 
 class PublicLogin(View):
     def dispatch_request(self):
-        form = RequestTokenForm()
+        form = TokenForm()
         if form.validate_on_submit():
             token = uuid4().hex[:6]
             phone = form.user_phone.data
@@ -28,9 +29,9 @@ class PublicLogin(View):
 
 class PublicValidateToken(View):
     def dispatch_request(self, user_token):
-        form = RequestTokenForm()
+        form = TokenForm()
         if form.validate_on_submit():
-            user_token = form.user_phone.data
+            user_token = form.user_token.data
         registered_users = UserModel.query(UserModel.user_token == user_token)
         updated_users = []
         for registered_user in registered_users:
