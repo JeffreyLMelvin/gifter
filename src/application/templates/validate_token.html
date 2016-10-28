@@ -1,35 +1,46 @@
 {% extends "base.html" %}
 
+{% block style_block %}
+    <style type="text/css">
+        table.table { width: 60%; }
+    </style>
+{% endblock %}
+
 {% block content %}
 
     <h1 id="">Login Required</h1>
-    <p>
-        <form method="post" action="{{ url_for('validate', user_token='post') }}">
-             <fieldset>
-                {{ form.hidden_tag() }}
-                <div class="control-group">
-                    <div class="control-label">{{ form.user_token.label }}</div>
-                    <div class="controls">
-                        {{ form.user_token|safe }}
-                        {% if form.user_token.errors %}
-                        <ul class="errors">
-                            {% for error in form.user_token.errors %}
-                            <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
-                    </div>
-                </div>
-            <button class="btn">Login</button>
-        </form>
-    </p>
-
-    <p>
-        <a class="btn btn-primary" data-toggle="modal" data-target="#request-token-modal">
-            <i class="icon-plus-sign icon-white"></i>
-            Request New Token
-        </a>
-    </p>
+    <table class="table table-bordered table-striped">
+        <tbody>
+            <tr>
+                <td>
+                     <form method="post" action="{{ url_for('validate', user_token='validate') }}">
+                         <fieldset>
+                            {{ form.hidden_tag() }}
+                            <div class="control-group">
+                                <div class="control-label">{{ form.user_token.label }}</div>
+                                <div class="controls">
+                                    {{ form.user_token|safe }}
+                                    {% if form.user_token.errors %}
+                                    <ul class="errors">
+                                        {% for error in form.user_token.errors %}
+                                        <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        <button class="btn">Login</button>
+                    </form>
+                </td>
+                <td>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#request-token-modal">
+                        <i class="icon-plus-sign icon-white"></i>
+                        Request New Token
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
 {% endblock content %}
 
