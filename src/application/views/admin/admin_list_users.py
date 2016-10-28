@@ -28,7 +28,7 @@ class AdminListUsers(View):
             is_admin=users.is_current_user_admin()
         )
 
-    @admin_required
+    # @admin_required
     def save_entry(self):
         form = UserForm()
         user = UserModel(
