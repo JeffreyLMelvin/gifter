@@ -25,7 +25,8 @@ def login_required(func):
 def registration_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
-        is_admin = users.get_current_user() and current_user.is_current_user_admin()
+        current_user = users.get_current_user()
+        is_admin = current_user and current_user.is_current_user_admin()
         if flask.session.get('user', None) or is_admin:
             return func(*args, **kwargs)
         return redirect(url_for('login'))
