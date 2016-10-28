@@ -46,5 +46,5 @@ class PublicValidateToken(View):
         if session.get('user', None):
             return redirect(url_for('list_users'))
         else:
-            flash(u"Invalid token, please request a new token.", 'failure')
+            flash(u"Invalid token, please request a new one.", 'warning')
             return redirect(url_for('login'))
