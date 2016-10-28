@@ -21,6 +21,8 @@ class AdminEditUser(View):
                 user.user_first_name = form.data.get('user_first_name')
                 user.user_last_name = form.data.get('user_last_name')
                 user.user_email = form.data.get('user_email')
+                user.user_phone = form.data.get('user_phone')
+                user.user_admin = form.data.get('user_admin')
                 user.put()
                 flash(u'User %s successfully saved.' % user_id, 'success')
                 return redirect(url_for('list_users'))

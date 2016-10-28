@@ -26,6 +26,9 @@ ExampleForm = model_form(ExampleModel, wtf.Form, field_args={
 })
 
 class UserForm(wtf.Form):
-    user_email = wtf.TextField('Email', validators=[validators.Required()])
+    user_email = wtf.TextField('Email')
     user_first_name = wtf.TextField('First Name', validators=[validators.Required()])
     user_last_name = wtf.TextField('Last Name', validators=[validators.Required()])
+    user_phone = wtf.TextField('Phone', validators=[validators.Required()])
+    user_admin = wtf.BooleanField('Admin', validators=[validators.Required()])
+    user_token = wtf.TextField('Token')
