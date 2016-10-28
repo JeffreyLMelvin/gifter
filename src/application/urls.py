@@ -15,6 +15,7 @@ from application.views.public.public_login import PublicLogin, PublicValidateTok
 from application.views.admin.admin_list_users import AdminListUsers
 from application.views.admin.admin_edit_user import AdminEditUser
 from application.views.admin.admin_delete_user import AdminDeleteUser
+from application.views.admin.admin_login import AdminSecret
 
 # from application.views.superadmin.admin_list_users import SuperAdminListUsers
 # from application.views.superadmin.admin_edit_user import SuperAdminEditUser
@@ -34,6 +35,8 @@ app.add_url_rule('/login/<user_token>', 'validate', view_func=PublicValidateToke
 app.add_url_rule('/registry', 'list_users', view_func=AdminListUsers.as_view('list_users'), methods=['GET', 'POST'])
 app.add_url_rule('/registry/<int:user_id>/edit', 'edit_user', view_func=AdminEditUser.as_view('edit_user'), methods=['GET', 'POST'])
 app.add_url_rule('/registry/<int:user_id>/delete', 'delete_user', view_func=AdminDeleteUser.as_view('delete_user'), methods=['POST'])
+
+app.add_url_rule('/admin', 'admin_login', view_func=AdminSecret.as_view('admin_login'))
 
 # app.add_url_rule('/admin', 'admin_list_users', view_func=SuperAdminListUsers.as_view('admin_list_users'), methods=['GET', 'POST'])
 # app.add_url_rule('/admin/<int:user_id>/edit', 'admin_edit_user', view_func=SuperAdminEditUser.as_view('admin_edit_user'), methods=['GET', 'POST'])
