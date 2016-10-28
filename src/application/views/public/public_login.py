@@ -17,7 +17,7 @@ class PublicLogin(View):
         if form.validate_on_submit():
             token = uuid4().hex[:6]
             phone = form.user_phone.data
-            registered_users = UserModel.query(user_phone=phone)
+            registered_users = UserModel.query(UserModel.user_phone == phone)
             for registered_user in registered_user:
                 registered_user.token = token
             ndb.put_multi(registered_users)
