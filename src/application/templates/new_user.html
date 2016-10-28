@@ -67,20 +67,6 @@
                 </div>
                 <div>&nbsp;</div>
                 <div class="control-group">
-                    <div class="control-label">{{ form.user_admin.label }}</div>
-                    <div class="controls">
-                        {{ form.user_admin|safe }}
-                        {% if form.user_admin.errors %}
-                        <ul class="errors">
-                            {% for error in form.user_admin.errors %}
-                            <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
-                    </div>
-                </div>
-                <div>&nbsp;</div>
-                <div class="control-group">
                     <div class="controls">
                         <input class="btn btn-primary" type="submit" value="Add User"/>
                         <button class="btn" data-dismiss="modal">Cancel</button>

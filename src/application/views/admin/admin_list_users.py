@@ -36,7 +36,6 @@ class AdminListUsers(View):
             user_first_name=form.user_first_name.data,
             user_last_name=form.user_last_name.data,
             user_phone=form.user_phone.data,
-            user_admin=form.user_admin.data,
             user_token=form.user_token.data
         )
         try:

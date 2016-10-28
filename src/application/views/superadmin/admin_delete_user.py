@@ -20,7 +20,7 @@ class SuperAdminDeleteUser(View):
             try:
                 user.key.delete()
                 flash(u'User %s successfully deleted.' % user_id, 'success')
-                return redirect(url_for('list_users'))
+                return redirect(url_for('admin_list_users'))
             except CapabilityDisabledError:
                 flash(u'App Engine Datastore is currently in read-only mode.', 'info')
-                return redirect(url_for('list_users'))
+                return redirect(url_for('admin_list_users'))

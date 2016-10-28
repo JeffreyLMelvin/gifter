@@ -23,4 +23,3 @@ class UserModel(ndb.Model):
     # version 2
     user_phone = ndb.StringProperty(default=None)
     user_token = ndb.StringProperty(default=None)
-    user_admin = ndb.BooleanProperty(default=False)

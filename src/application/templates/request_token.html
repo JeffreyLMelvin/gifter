@@ -1,0 +1,38 @@
+<div class="modal fade" id="request-token-modal">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h3>Request a Token</h3>
+    </div>
+    <div class="modal-body">
+        <form id="request-token-form" class="well"
+            action="{{ url_for('login') }}" method="post" accept-charset="utf-8">
+             <fieldset>
+                {{ form.hidden_tag() }}
+                <div class="control-group">
+                    <div class="control-label">{{ form.user_phone.label }}</div>
+                    <div class="controls">
+                        {{ form.user_phone|safe }}
+                        {% if form.user_phone.errors %}
+                        <ul class="errors">
+                            {% for error in form.user_phone.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+                <div class="control-group">
+                    <div class="controls">
+                        <input class="btn btn-primary" type="submit" value="Get Token"/>
+                        <button class="btn" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    </div>
+    </div>
+</div>

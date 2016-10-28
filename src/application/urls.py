@@ -10,21 +10,15 @@ from application import app
 
 from application.views.public.public_warmup import PublicWarmup
 from application.views.public.public_index import PublicIndex
-# from application.views.public.public_say_hello import PublicSayHello
+from application.views.public.public_login import PublicLogin, PublicValidateToken
 
 from application.views.admin.admin_list_users import AdminListUsers
 from application.views.admin.admin_edit_user import AdminEditUser
 from application.views.admin.admin_delete_user import AdminDeleteUser
 
-from application.views.superadmin.admin_list_users import SuperAdminListUsers
-from application.views.superadmin.admin_edit_user import SuperAdminEditUser
-from application.views.superadmin.admin_delete_user import SuperAdminDeleteUser
-
-# from application.views.admin.admin_list_examples import AdminListExamples
-# from application.views.admin.admin_list_examples_cached import AdminListExamplesCached
-# from application.views.admin.admin_secret import AdminSecret
-# from application.views.admin.admin_edit_example import AdminEditExample
-# from application.views.admin.admin_delete_example import AdminDeleteExample
+# from application.views.superadmin.admin_list_users import SuperAdminListUsers
+# from application.views.superadmin.admin_edit_user import SuperAdminEditUser
+# from application.views.superadmin.admin_delete_user import SuperAdminDeleteUser
 
 
 # URL dispatch rules
@@ -34,28 +28,18 @@ from application.views.superadmin.admin_delete_user import SuperAdminDeleteUser
 app.add_url_rule('/_ah/warmup', 'public_warmup', view_func=PublicWarmup.as_view('public_warmup'))
 
 app.add_url_rule('/', 'public_index', view_func=PublicIndex.as_view('public_index'))
+app.add_url_rule('/login', 'login', view_func=PublicLogin.as_view('login'), methods=['GET', 'POST'])
+app.add_url_rule('/login/<str:user_token>', 'validate', view_func=PublicValidateToken.as_view('validate'))
 
 app.add_url_rule('/registry', 'list_users', view_func=AdminListUsers.as_view('list_users'), methods=['GET', 'POST'])
 app.add_url_rule('/registry/<int:user_id>/edit', 'edit_user', view_func=AdminEditUser.as_view('edit_user'), methods=['GET', 'POST'])
 app.add_url_rule('/registry/<int:user_id>/delete', 'delete_user', view_func=AdminDeleteUser.as_view('delete_user'), methods=['POST'])
 
-app.add_url_rule('/admin', 'admin_list_users', view_func=SuperAdminListUsers.as_view('admin_list_users'), methods=['GET', 'POST'])
-app.add_url_rule('/admin/<int:user_id>/edit', 'admin_edit_user', view_func=SuperAdminEditUser.as_view('admin_edit_user'), methods=['GET', 'POST'])
-app.add_url_rule('/admin/<int:user_id>/delete', 'admin_delete_user', view_func=SuperAdminDeleteUser.as_view('admin_delete_user'), methods=['POST'])
+# app.add_url_rule('/admin', 'admin_list_users', view_func=SuperAdminListUsers.as_view('admin_list_users'), methods=['GET', 'POST'])
+# app.add_url_rule('/admin/<int:user_id>/edit', 'admin_edit_user', view_func=SuperAdminEditUser.as_view('admin_edit_user'), methods=['GET', 'POST'])
+# app.add_url_rule('/admin/<int:user_id>/delete', 'admin_delete_user', view_func=SuperAdminDeleteUser.as_view('admin_delete_user'), methods=['POST'])
 
 
-
-
-
-# app.add_url_rule('/examples', 'list_examples', view_func=AdminListExamples.as_view('list_examples'), methods=['GET', 'POST'])
-
-# app.add_url_rule('/examples/cached', 'cached_examples', view_func=AdminListExamplesCached.as_view('cached_examples'))
-
-# app.add_url_rule('/admin_only', 'admin_only', view_func=AdminSecret.as_view('admin_only'))
-
-# app.add_url_rule('/examples/<int:example_id>/edit', 'edit_example', view_func=AdminEditExample.as_view('edit_example'), methods=['GET', 'POST'])
-
-# app.add_url_rule('/examples/<int:example_id>/delete', 'delete_example', view_func=AdminDeleteExample.as_view('delete_example'), methods=['POST'])
 
 # Error handlers
 

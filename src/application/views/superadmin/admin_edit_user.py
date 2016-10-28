@@ -25,5 +25,5 @@ class SuperAdminEditUser(View):
                 user.user_admin = form.data.get('user_admin')
                 user.put()
                 flash(u'User %s successfully saved.' % user_id, 'success')
-                return redirect(url_for('list_users'))
+                return redirect(url_for('admin_list_users'))
         return render_template('edit_user.html', user=user, form=form)

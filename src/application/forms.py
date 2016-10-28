@@ -30,5 +30,7 @@ class UserForm(wtf.Form):
     user_first_name = wtf.TextField('First Name', validators=[validators.Required()])
     user_last_name = wtf.TextField('Last Name', validators=[validators.Required()])
     user_phone = wtf.TextField('Phone', validators=[validators.Required()])
-    user_admin = wtf.BooleanField('Admin')
     user_token = wtf.TextField('Token')
+
+class RequestTokenForm(wtf.Form):
+    user_phone = wtf.TextField('Phone Number')
