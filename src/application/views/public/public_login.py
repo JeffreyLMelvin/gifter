@@ -2,9 +2,11 @@ from uuid import uuid4
 
 from flask.views import View
 
+from flask import flash
 from flask import redirect
 from flask import render_template
 from flask import session
+from flask import url_for
 
 from google.appengine.ext import ndb
 
@@ -22,7 +24,7 @@ class PublicLogin(View):
             for registered_user in registered_users:
                 registered_user.token = token
             ndb.put_multi(registered_users)
-            return render_template('404.html')
+            flash("Token sent to %s. Follow link or type in token above." % phone)
 
         return render_template('validate_token.html', form=form)
 
