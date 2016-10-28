@@ -18,7 +18,7 @@ class PublicLogin(View):
             token = uuid4().hex[:6]
             phone = form.user_phone.data
             registered_users = UserModel.query(UserModel.user_phone == phone)
-            for registered_user in registered_user:
+            for registered_user in registered_users:
                 registered_user.token = token
             ndb.put_multi(registered_users)
             return render_template('404.html')
