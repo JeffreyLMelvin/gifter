@@ -24,7 +24,7 @@ class PublicLogin(View):
             for registered_user in registered_users:
                 registered_user.token = token
             ndb.put_multi(registered_users)
-            flash("Token sent to %s. Follow link or type in token above." % phone)
+            flash(u"Token sent to %s. Follow link or type in token above." % phone, 'info')
 
         return render_template('validate_token.html', form=form)
 
@@ -46,4 +46,5 @@ class PublicValidateToken(View):
         if session.get('user', None):
             return redirect(url_for('list_users'))
         else:
+            flash(u"Invalid token, please request a new token.", 'error')
             return redirect(url_for('login'))
