@@ -12,8 +12,8 @@
     <table class="table table-bordered table-striped">
         <tbody>
             <tr>
-                <td>
-                     <form method="post" action="{{ url_for('validate', user_token='validate') }}">
+                 <form method="post" action="{{ url_for('validate', user_token='validate') }}">
+                     <td>
                          <fieldset>
                             {{ form.hidden_tag() }}
                             <div class="control-group">
@@ -29,9 +29,12 @@
                                     {% endif %}
                                 </div>
                             </div>
+                        </fieldset>
+                    </td>
+                    <td>
                         <button class="btn">Login</button>
-                    </form>
-                </td>
+                    </td>
+                </form>
                 <td>
                     <a class="btn btn-primary" data-toggle="modal" data-target="#request-token-modal">
                         <i class="icon-plus-sign icon-white"></i>
