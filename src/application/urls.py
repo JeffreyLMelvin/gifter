@@ -29,8 +29,7 @@ app.add_url_rule('/_ah/warmup', 'public_warmup', view_func=PublicWarmup.as_view(
 
 app.add_url_rule('/', 'public_index', view_func=PublicIndex.as_view('public_index'))
 app.add_url_rule('/login', 'login', view_func=PublicLogin.as_view('login'), methods=['GET', 'POST'])
-app.add_url_rule('/login/<user_token>', 'validate_get', view_func=PublicValidateToken.as_view('validate_get'), methods=['GET'])
-app.add_url_rule('/validate', 'validate_post', view_func=PublicValidateToken.as_view('validate_post'), methods=['POST'])
+app.add_url_rule('/login/<user_token>', 'validate', view_func=PublicValidateToken.as_view('validate_get'), methods=['GET', 'POST'])
 
 app.add_url_rule('/registry', 'list_users', view_func=AdminListUsers.as_view('list_users'), methods=['GET', 'POST'])
 app.add_url_rule('/registry/<int:user_id>/edit', 'edit_user', view_func=AdminEditUser.as_view('edit_user'), methods=['GET', 'POST'])
