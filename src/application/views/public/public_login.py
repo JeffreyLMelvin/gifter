@@ -28,7 +28,10 @@ class PublicLogin(View):
 
 class PublicValidateToken(View):
     def dispatch_request(self, user_token):
-        registered_users = UserModel.query()
+        form = RequestTokenForm()
+        if form.validate_on_submit():
+            user_token = form.user_phone.data
+        registered_users = UserModel.query(UserModel.user_token == user_token)
         updated_users = []
         for registered_user in registered_users:
             if registered_user.user_token and registered_user.user_token == user_token:

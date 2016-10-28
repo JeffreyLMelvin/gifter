@@ -4,8 +4,22 @@
 
     <h1 id="">Login Required</h1>
     <p>
-        <form method="post" action="{{ url_for('validate_post') }}">
-            Phone Number: <input type="text" name="user_token"/><br>
+        <form method="post" action="{{ url_for('validate', user_token='post') }}">
+             <fieldset>
+                {{ form.hidden_tag() }}
+                <div class="control-group">
+                    <div class="control-label">{{ form.user_phone.label }}</div>
+                    <div class="controls">
+                        {{ form.user_phone|safe }}
+                        {% if form.user_phone.errors %}
+                        <ul class="errors">
+                            {% for error in form.user_phone.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
             <button class="btn">Login</button>
         </form>
     </p>
