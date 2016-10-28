@@ -23,7 +23,7 @@ class PublicLogin(View):
             ndb.put_multi(registered_users)
             return render_template('404.html')
 
-        return render_template('request_token.html')
+        return render_template('validate_token.html')
 
 
 class PublicValidateToken(View):
