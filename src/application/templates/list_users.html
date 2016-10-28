@@ -41,12 +41,14 @@
             {% endfor %}
         </tbody>
     </table>
+    {% if is_admin %}
     <p>
         <a class="btn btn-primary" data-toggle="modal" data-target="#new-user-modal">
             <i class="icon-plus-sign icon-white"></i>
             New user
         </a>
     </p>
+    {% endif %}
 
 
 
