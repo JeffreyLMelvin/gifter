@@ -14,6 +14,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>&nbsp;</th>
                 {% if is_admin %}
                 <th>&nbsp;</th>
                 <th>&nbsp;</th>
@@ -25,6 +26,21 @@
             {% set user_id = user.key.id() %}
             <tr>
                 <td>{{ user.user_first_name }} {{ user.user_last_name }}</td>
+                {% if auth == user.user_phone %}
+                <td>
+                    <a class="btn btn-primary" href="{{url_for('user_xlist', user_id=user_id)}}">
+                        <i class="icon-plus-sign icon-blue"></i>
+                        Manage
+                    </a>
+                </td>
+                {% else %}
+                <td>
+                    <a class="btn btn-primary" href="{{url_for('user_xlist', user_id=user_id)}}">
+                        <i class="icon-plus-sign icon-white"></i>
+                        View
+                    </a>
+                </td>
+                {% endif %}
                 {% if is_admin %}
                 <td>
                     <a href="{{ url_for('edit_user', user_id=user_id) }}" class="btn">Edit</a>

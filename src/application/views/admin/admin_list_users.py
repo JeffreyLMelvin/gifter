@@ -4,7 +4,7 @@ import phonenumbers
 
 from flask.views import View
 
-from flask import flash, redirect, url_for, render_template
+from flask import flash, redirect, url_for, render_template, session
 
 from google.appengine.api import users
 from google.appengine.runtime.apiproxy_errors import CapabilityDisabledError
@@ -27,6 +27,7 @@ class AdminListUsers(View):
             'list_users.html',
             users=registered_users,
             form=form,
+            auth=session.user,
             is_admin=users.is_current_user_admin()
         )
 
