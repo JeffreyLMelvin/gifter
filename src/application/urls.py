@@ -35,7 +35,7 @@ app.add_url_rule('/registry/<int:user_id>/delete', 'delete_user', view_func=Admi
 
 app.add_url_rule('/admin', 'admin_login', view_func=AdminSecret.as_view('admin_login'))
 
-app.add_url_rule('/registry/<int:user_id>/list', 'user_xlist', view_func=UserGifts.as_view('user_xlist'))
+app.add_url_rule('/registry/<int:user_id>/list', 'user_xlist', view_func=UserGifts.as_view('user_xlist'), methods=['GET', 'POST'])
 
 # Error handlers
 

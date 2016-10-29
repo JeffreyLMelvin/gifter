@@ -14,5 +14,5 @@ from forms import GiftForm
 
 
 class UserGifts(View):
-    def dispatch_request(self):
+    def dispatch_request(self, user_id):
         return 'here'
