@@ -22,7 +22,7 @@ class UserGifts(View):
     @registration_required
     def dispatch_request(self, user_id):
         user_key = ndb.Key(UserModel, user_id)
-        gift_list = GiftForm.query(GiftModel.owner == user_key)
+        gift_list = GiftModel.query(GiftModel.owner == user_key)
         owner = UserModel.get_by_id(user_id)
 
         form = GiftForm()
