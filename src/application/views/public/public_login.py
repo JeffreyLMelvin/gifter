@@ -30,9 +30,11 @@ class PublicLogin(View):
                 phonenumbers.PhoneNumberFormat.E164
             )
             registered_users = UserModel.query(UserModel.user_phone == phone)
+            updated_users = []
             for registered_user in registered_users:
                 registered_user.token = token
-            ndb.put_multi(registered_users)
+                updated_users.append(registered_user)
+            ndb.put_multi(updated_users)
 
             url = url_for('validate', user_token=token)
             client = TwilioRestClient(TWILIO_SID, TWILIO_TOKEN)
