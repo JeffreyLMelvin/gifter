@@ -15,7 +15,7 @@ TWILIO_TOKEN = ''
 
 
 try:
-    from .settingslocal import *
+    from settingslocal import *
 except ImportError:
     pass
 
