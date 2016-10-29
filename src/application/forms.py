@@ -27,5 +27,5 @@ class GiftForm(wtf.Form):
     summary = wtf.TextField('Summary')
     description = wtf.TextField('Description/Link')
     notes = wtf.TextAreaField("Note(s) Giftee Can't See")
-    purchased = wtf.SubmitField('Purchase')
+    purchased = wtf.BooleanField('Purchased')
 

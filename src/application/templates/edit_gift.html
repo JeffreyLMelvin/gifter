@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Edit Gift</h3>
+    <form id="edit-user" class="well"
+          action="{{ url_for('edit_gift', gift_id=gift.key.id()) }}" method="post" accept-charset="utf-8">
+        <fieldset>
+            {{ form.hidden_tag() }}
+            <input type="hidden" name="mode" value="edit" />
+            <div class="control-group">
+                <div class="control-label">{{ form.summary.label }}</div>
+                <div class="controls">
+                    {{ form.summary|safe }}
+                    {% if form.summary.errors %}
+                        <ul class="errors">
+                            {% for error in form.summary.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div>&nbsp;</div>
+            <div class="control-group">
+                <div class="control-label">{{ form.description.label }}</div>
+                <div class="controls">
+                    {{ form.description|safe }}
+                    {% if form.description.errors %}
+                        <ul class="errors">
+                            {% for error in form.description.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div>&nbsp;</div>
+            {% if auth.key.id() != gift.owner.id() %}
+            <div class="control-group">
+                <div class="control-label">{{ form.notes.label }}</div>
+                <div class="controls">
+                    {{ form.notes|safe }}
+                    {% if form.notes.errors %}
+                        <ul class="errors">
+                            {% for error in form.notes.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div>&nbsp;</div>
+            <div class="control-group">
+                <div class="control-label">{{ form.purchased.label }}</div>
+                <div class="controls">
+                    {{ form.purchased|safe }}
+                    {% if form.purchased.errors %}
+                        <ul class="errors">
+                            {% for error in form.purchased.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div>&nbsp;</div>
+            {% endif %}
+            <div class="control-group">
+                <div class="controls">
+                    <input class="btn btn-primary" type="submit" value="Save Changes"/>
+                    <a class="btn cancel" href="{{ url_for('gift_list', user_id=gift.owner.id()) }}">Cancel</a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+{% endblock content %}
