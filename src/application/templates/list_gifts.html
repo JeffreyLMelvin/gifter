@@ -34,11 +34,11 @@
                 {% if owner_id == add_id or owner_id != auth_id %}
                 <tr>
                     {% if owner_id != auth_id %}
-                    {% if gift.purchaser %}
-                    <td>Purchased</td>
-                    {% else %}
-                    <td>Available</td>
-                    {% endif %}
+                        {% if gift.purchaser %}
+                        <td>Purchased</td>
+                        {% else %}
+                        <td>Available</td>
+                        {% endif %}
                     {% endif %}
                     <td>{{ gift.summary }}</td>
                     <td>{{ gift.description }}</td>
@@ -53,7 +53,6 @@
                             <button class="btn">Delete</button>
                         </form>
                     </td>
-                    {% endif %}
                 </tr>
                 {% endif %}
 
