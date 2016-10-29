@@ -39,8 +39,7 @@ class PublicLogin(View):
             if updated_users:
                 ndb.put_multi(updated_users)
 
-                url = request.url_root + url_for('validate', user_token=token)
-                url = url.replace('//', '/')
+                url = request.url_root.rstrip('/') + url_for('validate', user_token=token)
 
                 client = TwilioRestClient(TWILIO_SID, TWILIO_TOKEN)
                 message = client.messages.create(
