@@ -68,6 +68,7 @@ class PublicValidateToken(View):
         for registered_user in registered_users:
             if registered_user.user_token and registered_user.user_token == user_token:
                 session['user'] = registered_user.to_dict()
+                session['user']['uid'] = registered_user.key.id()
                 registered_user.user_token = None
                 updated_users.append(registered_user)
         ndb.put_multi(updated_users)

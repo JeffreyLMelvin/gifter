@@ -24,10 +24,10 @@ class EditGift(View):
             if form.validate_on_submit():
                 gift.summary = form.data.get('summary')
                 gift.description = form.data.get('description')
-                if session.user['id'] != gift.owner.id():
+                if session.user['uid'] != gift.owner.id():
                     gift.notes = form.data.get('notes')
                     if form.data.get('purchased'):
-                        gift.purchaser = ndb.Key(UserModel, session.user['id'])
+                        gift.purchaser = ndb.Key(UserModel, session.user['uid'])
 
                 gift.put()
 

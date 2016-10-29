@@ -14,7 +14,7 @@
         <thead>
             <tr>
                 {% set owner_id = owner.key.id() %}
-                {% set auth_id = auth.get('id') %}
+                {% set auth_id = auth.get('uid') %}
                 {% if owner_id != auth_id %}
                 <th>&nbsp;</th>
                 {% endif %}
