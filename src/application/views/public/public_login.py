@@ -62,7 +62,7 @@ class PublicValidateToken(View):
     def dispatch_request(self, user_token):
         form = TokenForm()
         if form.validate_on_submit():
-            user_token = form.user_token.data
+            user_token = form.user_token.data.upper()
         registered_users = UserModel.query(UserModel.user_token == user_token)
         updated_users = []
         for registered_user in registered_users:
