@@ -10,6 +10,7 @@ from flask import redirect
 from flask import render_template
 from flask import session
 from flask import url_for
+from flask import request
 
 from google.appengine.ext import ndb
 
@@ -36,7 +37,7 @@ class PublicLogin(View):
                 updated_users.append(registered_user)
             ndb.put_multi(updated_users)
 
-            url = url_for('validate', user_token=token)
+            url = request.url_root + '/' + url_for('validate', user_token=token)
             client = TwilioRestClient(TWILIO_SID, TWILIO_TOKEN)
             message = client.messages.create(
                 body="A new login token has been requested for your account\n\n"
