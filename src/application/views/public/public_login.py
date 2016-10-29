@@ -32,7 +32,7 @@ class PublicLogin(View):
             registered_users = UserModel.query(UserModel.user_phone == phone)
             updated_users = []
             for registered_user in registered_users:
-                registered_user.token = token
+                registered_user.user_token = token
                 updated_users.append(registered_user)
             ndb.put_multi(updated_users)
 
