@@ -27,7 +27,7 @@ class UserGifts(View):
 
         form = GiftForm()
         if form.validate_on_submit():
-            auth = ndb.Key(UserModel, session.user['uid'])
+            auth = ndb.Key(UserModel, session['user']['uid'])
             gift = GiftModel(
                 owner=user_key,
                 added_by=auth,
