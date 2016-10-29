@@ -26,6 +26,6 @@ class TokenForm(wtf.Form):
 class GiftForm(wtf.Form):
     summary = wtf.TextField('Summary')
     description = wtf.TextField('Description/Link')
-    notes = wtf.TextArea("Note(s) Giftee Can't See")
+    notes = wtf.TextAreaField("Note(s) Giftee Can't See")
     purchased = wtf.SubmitField('Purchase')
 

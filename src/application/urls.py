@@ -17,6 +17,7 @@ from application.views.admin.admin_edit_user import AdminEditUser
 from application.views.admin.admin_delete_user import AdminDeleteUser
 from application.views.admin.admin_login import AdminSecret
 
+from application.views.user.user_gift_list import UserGifts
 
 # URL dispatch rules
 
@@ -33,6 +34,8 @@ app.add_url_rule('/registry/<int:user_id>/edit', 'edit_user', view_func=AdminEdi
 app.add_url_rule('/registry/<int:user_id>/delete', 'delete_user', view_func=AdminDeleteUser.as_view('delete_user'), methods=['POST'])
 
 app.add_url_rule('/admin', 'admin_login', view_func=AdminSecret.as_view('admin_login'))
+
+app.add_url_rule('/registry/<int:user_id>/list', 'user_xlist', view_func=UserGifts.as_view('user_xlist'))
 
 # Error handlers
 
