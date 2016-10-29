@@ -27,7 +27,7 @@ class AdminListUsers(View):
             'list_users.html',
             users=registered_users,
             form=form,
-            auth=session.user,
+            auth=session.get('user', None),
             is_admin=users.is_current_user_admin()
         )
 

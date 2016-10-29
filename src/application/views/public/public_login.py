@@ -25,7 +25,7 @@ class PublicLogin(View):
     def dispatch_request(self):
         form = TokenForm()
         if form.validate_on_submit():
-            token = uuid4().hex[:6]
+            token = uuid4().hex[:6].upper()
             phone = phonenumbers.format_number(
                 phonenumbers.parse(form.user_phone.data, region='US'),
                 phonenumbers.PhoneNumberFormat.E164
