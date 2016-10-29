@@ -17,7 +17,7 @@ class DeleteGift(View):
     def dispatch_request(self, gift_id):
         gift = GiftModel.get_by_id(gift_id)
         if request.method == "POST":
-            if gift.added_by.id() == session.user.id():
+            if gift.added_by.id() == session.user['id']:
                 try:
                     gift.key.delete()
                     flash(u'Gift %s successfully deleted.' % gift_id, 'success')

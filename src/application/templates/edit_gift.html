@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div>&nbsp;</div>
-            {% if auth.key.id() != gift.owner.id() %}
+            {% if auth['id'] != gift.owner.id() %}
             <div class="control-group">
                 <div class="control-label">{{ form.notes.label }}</div>
                 <div class="controls">

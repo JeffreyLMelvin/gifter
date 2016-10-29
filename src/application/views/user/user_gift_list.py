@@ -46,6 +46,6 @@ class UserGifts(View):
             'list_gifts.html',
             gifts=gift_list,
             form=form,
-            auth=session.get('user', UserModel()),
+            auth=session.get('user', {}),
             owner=owner
         )

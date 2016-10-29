@@ -14,13 +14,13 @@
         <thead>
             <tr>
                 {% set owner_id = owner.key.id() %}
-                {% set auth_id = auth.key.id() %}
+                {% set auth_id = auth.get('id') %}
                 {% if owner_id != auth_id %}
                 <th>&nbsp;</th>
                 {% endif %}
                 <th>Summary</th>
                 <th>Description</th>
-                {% if owner.key.id() != auth.key.id() %}
+                {% if owner_id != auth_id %}
                 <th>Notes</th>
                 {% endif %}
                 <th>&nbsp;</th>

@@ -4,6 +4,8 @@ from flask.views import View
 
 from flask import flash, redirect, url_for, render_template, request, session
 
+from google.appengine.ext import ndb
+
 from forms import GiftForm
 from models import GiftModel
 from models import UserModel
@@ -22,10 +24,10 @@ class EditGift(View):
             if form.validate_on_submit():
                 gift.summary = form.data.get('summary')
                 gift.description = form.data.get('description')
-                if session.user.id() != gift.owner.id():
+                if session.user['id'] != gift.owner.id():
                     gift.notes = form.data.get('notes')
                     if form.data.get('purchased'):
-                        gift.purchaser = session.user.key
+                        gift.purchaser = ndb.Key(UserModel, session.user['id'])
 
                 gift.put()
 
@@ -35,5 +37,5 @@ class EditGift(View):
             'edit_gift.html',
             gift=gift,
             form=form,
-            auth=session.get('user', UserModel())
+            auth=session.get('user', {})
         )
