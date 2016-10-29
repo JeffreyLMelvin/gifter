@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import phonenumbers
+
 from flask.views import View
 
 from flask import flash, redirect, url_for, render_template, request
@@ -21,7 +23,10 @@ class AdminEditUser(View):
                 user.user_first_name = form.data.get('user_first_name')
                 user.user_last_name = form.data.get('user_last_name')
                 user.user_email = form.data.get('user_email')
-                user.user_phone = form.data.get('user_phone')
+                user.user_phone = phonenumbers.format_number(
+                    phonenumbers.parse(form.data.get('user_phone'), region='US'),
+                    phonenumbers.PhoneNumberFormat.E164
+                )
                 user.user_admin = form.data.get('user_admin')
                 user.put()
                 flash(u'User %s successfully saved.' % user_id, 'success')

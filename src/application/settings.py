@@ -10,6 +10,16 @@ Important: Place your keys in the secret_keys.py module,
 from secret_keys import CSRF_SECRET_KEY, SESSION_KEY
 
 
+TWILIO_SID = ''
+TWILIO_TOKEN = ''
+
+
+try:
+    from .settingslocal import *
+except ImportError:
+    pass
+
+
 class Config(object):
     # Set secret keys for CSRF protection
     SECRET_KEY = CSRF_SECRET_KEY

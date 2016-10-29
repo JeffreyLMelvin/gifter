@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import phonenumbers
+
 from flask.views import View
 
 from flask import flash, redirect, url_for, render_template
@@ -35,7 +37,10 @@ class AdminListUsers(View):
             user_email=form.user_email.data,
             user_first_name=form.user_first_name.data,
             user_last_name=form.user_last_name.data,
-            user_phone=form.user_phone.data,
+            user_phone=phonenumbers.format_number(
+                phonenumbers.parse(form.user_phone.data, region='US'),
+                phonenumbers.PhoneNumberFormat.E164
+            ),
             user_token=form.user_token.data
         )
         try:
