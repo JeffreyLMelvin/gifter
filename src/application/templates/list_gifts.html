@@ -31,7 +31,7 @@
             {% set gift_id = gift.key.id() %}
             {% set add_id = gift.added_by.id() %}
 
-                {% if owner_id == add_id || owner_id != auth_id %}
+                {% if owner_id == add_id or owner_id != auth_id %}
                 <tr>
                     {% if owner_id != auth_id %}
                     {% if gift.purchaser %}
