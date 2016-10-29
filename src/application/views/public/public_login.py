@@ -34,7 +34,7 @@ class PublicLogin(View):
                 registered_user.token = token
             ndb.put_multi(registered_users)
 
-            url = url_for(validate, token=token)
+            url = url_for('validate', token=token)
             client = TwilioRestClient(TWILIO_SID, TWILIO_TOKEN)
             message = client.messages.create(
                 body="A new login token has been requested for your account\n\n"
