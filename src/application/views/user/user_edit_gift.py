@@ -11,7 +11,7 @@ from models import UserModel
 from decorators import registration_required
 
 
-class AdminEditUser(View):
+class EditGift(View):
 
     @registration_required
     def dispatch_request(self, gift_id):
