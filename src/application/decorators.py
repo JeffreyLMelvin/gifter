@@ -29,12 +29,6 @@ def registration_required(func):
         if session.get('user', None) or is_admin:
             return func(*args, **kwargs)
         return redirect(url_for('login'))
-        # if current_user:
-        #     is_registered = current_user.email() in [x.user_email for x in UserModel.query()]
-        #     if is_registered or users.is_current_user_admin():
-        #         return func(*args, **kwargs)
-        #     abort(401)
-        # return redirect(users.create_login_url(request.url))
     return decorated_view
 
 

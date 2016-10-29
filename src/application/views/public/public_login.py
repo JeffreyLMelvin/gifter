@@ -35,19 +35,26 @@ class PublicLogin(View):
             for registered_user in registered_users:
                 registered_user.user_token = token
                 updated_users.append(registered_user)
-            ndb.put_multi(updated_users)
 
-            url = request.url_root + '/' + url_for('validate', user_token=token)
-            client = TwilioRestClient(TWILIO_SID, TWILIO_TOKEN)
-            message = client.messages.create(
-                body="A new login token has been requested for your account\n\n"
-                     "Token: %s\n"
-                     "or\n"
-                     "Click to login: %s" % (token, url),
-                to=phone,
-                from_="+15153052239"
-            )
-            flash(u"Token sent to %s. Follow link or type in token above." % phone, 'success')
+            if updated_users:
+                ndb.put_multi(updated_users)
+
+                url = request.url_root + url_for('validate', user_token=token)
+                url = url.replace('//', '/')
+
+                client = TwilioRestClient(TWILIO_SID, TWILIO_TOKEN)
+                message = client.messages.create(
+                    body="Jeff's Xmas Tracker\n\n"
+                         "Token: %s\n"
+                         "or\n"
+                         "Click: %s" % (token, url),
+                    to=phone,
+                    from_="+15153052239"
+                )
+
+                flash(u"Token sent to %s. Follow link or type in token above." % phone, 'success')
+            else:
+                flash(u"The phone number %s isn't registered to any users." % phone, 'warning')
 
         return render_template('validate_token.html', form=form)
 

@@ -17,10 +17,6 @@ from application.views.admin.admin_edit_user import AdminEditUser
 from application.views.admin.admin_delete_user import AdminDeleteUser
 from application.views.admin.admin_login import AdminSecret
 
-# from application.views.superadmin.admin_list_users import SuperAdminListUsers
-# from application.views.superadmin.admin_edit_user import SuperAdminEditUser
-# from application.views.superadmin.admin_delete_user import SuperAdminDeleteUser
-
 
 # URL dispatch rules
 
@@ -38,24 +34,14 @@ app.add_url_rule('/registry/<int:user_id>/delete', 'delete_user', view_func=Admi
 
 app.add_url_rule('/admin', 'admin_login', view_func=AdminSecret.as_view('admin_login'))
 
-# app.add_url_rule('/admin', 'admin_list_users', view_func=SuperAdminListUsers.as_view('admin_list_users'), methods=['GET', 'POST'])
-# app.add_url_rule('/admin/<int:user_id>/edit', 'admin_edit_user', view_func=SuperAdminEditUser.as_view('admin_edit_user'), methods=['GET', 'POST'])
-# app.add_url_rule('/admin/<int:user_id>/delete', 'admin_delete_user', view_func=SuperAdminDeleteUser.as_view('admin_delete_user'), methods=['POST'])
-
-
-
 # Error handlers
 
 # Handle 404 errors
-
-
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
 # Handle 500 errors
-
-
 @app.errorhandler(500)
 def server_error(e):
     return render_template('500.html'), 500
