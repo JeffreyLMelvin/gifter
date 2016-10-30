@@ -42,7 +42,10 @@ class AdminListUsers(View):
                 phonenumbers.parse(form.user_phone.data, region='US'),
                 phonenumbers.PhoneNumberFormat.E164
             ),
-            user_token=form.user_token.data
+            user_token=form.user_token.data,
+            user_household=form.user_household.data.title(),
+            user_house_manager=form.user_house_manager.data,
+            user_is_adult=form.user_is_adult.data
         )
         try:
             user.put()

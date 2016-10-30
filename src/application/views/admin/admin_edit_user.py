@@ -28,6 +28,9 @@ class AdminEditUser(View):
                     phonenumbers.PhoneNumberFormat.E164
                 )
                 user.user_admin = form.data.get('user_admin')
+                user.user_household = form.data.get('user_household')
+                user.user_house_manager = form.data.get('user_house_manager')
+                user.user_is_adult = form.data.get('user_is_adult')
                 user.put()
                 flash(u'User %s successfully saved.' % user_id, 'success')
                 return redirect(url_for('list_users'))

@@ -22,16 +22,19 @@ class EditGift(View):
         form.purchased = True if gift.purchaser else False
         if request.method == "POST":
             if form.validate_on_submit():
-                gift.summary = form.data.get('summary')
-                gift.description = form.data.get('description')
-                if session['user']['uid'] != gift.owner.id():
-                    gift.notes = form.data.get('notes')
-                    if form.data.get('purchased'):
-                        gift.purchaser = ndb.Key(UserModel, session['user']['uid'])
+                if session['user']['uid'] == gift.added_by.id():
+                    gift.summary = form.data.get('summary')
+                    gift.description = form.data.get('description')
+                    if session['user']['uid'] != gift.owner.id():
+                        gift.notes = form.data.get('notes')
+                        if form.data.get('purchased'):
+                            gift.purchaser = ndb.Key(UserModel, session['user']['uid'])
 
-                gift.put()
+                    gift.put()
 
-                flash(u'Gift %s successfully saved.' % gift_id, 'success')
+                    flash(u'Gift %s successfully saved.' % gift_id, 'success')
+                else:
+                    flash(u"You cannot edit a gift you didn't create.", 'warning')
                 return redirect(url_for('gift_list', user_id=gift.owner.id()))
         return render_template(
             'edit_gift.html',

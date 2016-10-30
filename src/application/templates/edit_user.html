@@ -64,6 +64,48 @@
             </div>
             <div>&nbsp;</div>
             <div class="control-group">
+                    <div class="control-label">{{ form.user_household.label }}</div>
+                    <div class="controls">
+                        {{ form.user_household|safe }}
+                        {% if form.user_household.errors %}
+                        <ul class="errors">
+                            {% for error in form.user_household.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+                <div class="control-group">
+                    <div class="control-label">{{ form.user_house_manager.label }}</div>
+                    <div class="controls">
+                        {{ form.user_house_manager|safe }}
+                        {% if form.user_house_manager.errors %}
+                        <ul class="errors">
+                            {% for error in form.user_house_manager.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+                <div class="control-group">
+                    <div class="control-label">{{ form.user_is_adult.label }}</div>
+                    <div class="controls">
+                        {{ form.user_is_adult|safe }}
+                        {% if form.user_is_adult.errors %}
+                        <ul class="errors">
+                            {% for error in form.user_is_adult.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+            <div class="control-group">
                 <div class="controls">
                     <input class="btn btn-primary" type="submit" value="Save Changes"/>
                     <a class="btn cancel" href="{{ url_for('list_users') }}">Cancel</a>

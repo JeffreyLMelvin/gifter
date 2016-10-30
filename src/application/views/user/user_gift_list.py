@@ -39,6 +39,7 @@ class UserGifts(View):
                 gift.put()
                 gift_id = gift.key.id()
                 flash(u'Item successfully added to gift list.', 'success')
+                return redirect(url_for('gift_list', user_id=user_id))
             except CapabilityDisabledError:
                 flash(u'App Engine Datastore is currently in read-only mode.', 'info')
                 return redirect(url_for('gift_list', user_id=user_id))
