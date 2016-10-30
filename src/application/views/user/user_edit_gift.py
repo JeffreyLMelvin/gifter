@@ -29,6 +29,8 @@ class EditGift(View):
                         gift.notes = form.data.get('notes')
                         if form.data.get('purchased'):
                             gift.purchaser = ndb.Key(UserModel, session['user']['uid'])
+                        else:
+                            gift.purchaser = None
 
                     gift.put()
 
