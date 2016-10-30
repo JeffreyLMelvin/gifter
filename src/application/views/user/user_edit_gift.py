@@ -18,8 +18,8 @@ class EditGift(View):
     @registration_required
     def dispatch_request(self, gift_id):
         gift = GiftModel.get_by_id(gift_id)
+        gift.purchased = True if gift.purchaser else False
         form = GiftForm(obj=gift)
-        form.data.purchased = True if gift.purchaser else False
         if request.method == "POST":
             if form.validate_on_submit():
                 if session['user']['uid'] == gift.added_by.id():
