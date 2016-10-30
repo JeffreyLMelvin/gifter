@@ -57,15 +57,18 @@
                             <button class="btn">Delete</button>
                         </form>
                     </td>
+                    {% else %}
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                     {% endif %}
                 </tr>
                 {% endif %}
 
             {% else %}
             {% if owner_id != auth_id %}
-            <tr><td colspan="5">This wishlist is empty</td></tr>
+            <tr><td colspan="6">This wishlist is empty</td></tr>
             {% else %}
-            <tr><td colspan="3">This wishlist is empty</td></tr>
+            <tr><td colspan="4">This wishlist is empty</td></tr>
             {% endif %}
             {% endfor %}
         </tbody>

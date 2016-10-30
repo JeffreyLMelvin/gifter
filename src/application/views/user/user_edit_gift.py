@@ -19,7 +19,7 @@ class EditGift(View):
     def dispatch_request(self, gift_id):
         gift = GiftModel.get_by_id(gift_id)
         form = GiftForm(obj=gift)
-        form.purchased = True if gift.purchaser else False
+        form.data.purchased = True if gift.purchaser else False
         if request.method == "POST":
             if form.validate_on_submit():
                 if session['user']['uid'] == gift.added_by.id():
@@ -34,7 +34,7 @@ class EditGift(View):
 
                     flash(u'Gift %s successfully saved.' % gift_id, 'success')
                 else:
-                    flash(u"You cannot edit a gift you didn't create.", 'warning')
+                    flash(u"You can't edit a gift you didn't add.", 'warning')
                 return redirect(url_for('gift_list', user_id=gift.owner.id()))
         return render_template(
             'edit_gift.html',
