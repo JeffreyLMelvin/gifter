@@ -26,7 +26,7 @@
             {% set user_id = user.key.id() %}
             <tr>
                 <td>{{ user.user_first_name }} {{ user.user_last_name }}</td>
-                {% if auth.get('user_phone') == user.user_phone %}
+                {% (if auth.get('user_phone') == user.user_phone) or (auth.get('household') == user.household and not user.is_adult and auth.get('user_house_manager'))%}
                 <td>
                     <a class="btn btn-primary" href="{{ url_for('gift_list', user_id=user_id) }}">
                         <i class="icon-plus-sign icon-white"></i>
