@@ -80,17 +80,17 @@
             validate: function (form, evt) {
                 // Form validation for modal dialog
                 var first_name = form.find('#user_first_name').val();
-                var last_name = form.find('#user_last_name').val();
+                // var last_name = form.find('#user_last_name').val();
                 // var email = form.find('#user_email').val();
                 var phone = form.find('#user_phone').val();
                 if (!(first_name)) {
                     evt.preventDefault();
                     Utils.renderFieldErrorTooltip('#user_first_name', 'Name is required', 'right');
                 }
-                if (!(last_name)) {
-                    evt.preventDefault();
-                    Utils.renderFieldErrorTooltip('#user_last_name', 'Name is required', 'right');
-                }
+                // if (!(last_name)) {
+                //     evt.preventDefault();
+                //     Utils.renderFieldErrorTooltip('#user_last_name', 'Name is required', 'right');
+                // }
                 // if (!(email)) {
                 //     evt.preventDefault();
                 //     Utils.renderFieldErrorTooltip('#user_email', 'Email is required', 'right');

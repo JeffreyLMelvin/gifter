@@ -11,7 +11,7 @@ from google.appengine.ext import ndb
 class UserModel(ndb.Model):
     user_email = ndb.StringProperty(default=None)
     user_first_name = ndb.StringProperty(required=True, default='')
-    user_last_name = ndb.StringProperty(required=True, default='')
+    user_last_name = ndb.StringProperty(default='')
     # version 2
     user_phone = ndb.StringProperty(default=None)
     user_token = ndb.StringProperty(default=None)
