@@ -32,9 +32,12 @@ class EditGift(View):
                         if form.data.get('purchased'):
                             gift.purchaser = ndb.Key(UserModel, session['user']['uid'])
                             gift.purchase_date = datetime.now()
-                        else:
-                            gift.purchaser = None
-                            gift.purchase_date = None
+                        elif gift.purchaser
+                            if session['user']['id'] == gift.purchaser.id():
+                                gift.purchaser = None
+                                gift.purchase_date = None
+                            else:
+                                flash(u"You can't unclaim a gift you didn't mark as purchased.", 'warning')
 
                     gift.put()
 
