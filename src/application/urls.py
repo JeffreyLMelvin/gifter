@@ -20,6 +20,7 @@ from application.views.admin.admin_login import AdminSecret
 from application.views.user.user_gift_list import UserGifts
 from application.views.user.user_edit_gift import EditGift
 from application.views.user.user_delete_gift import DeleteGift
+from application.views.user.user_purchase_gift import PurchaseGift
 
 # URL dispatch rules
 
@@ -41,6 +42,7 @@ app.add_url_rule('/registry/<int:user_id>/gifts', 'gift_list', view_func=UserGif
 #app.add_url_rule('/registry/<int:user_id>/gifts/edit')
 app.add_url_rule('/gifts/<int:gift_id>/edit', 'edit_gift', view_func=EditGift.as_view('edit_gift'), methods=['GET', 'POST'])
 app.add_url_rule('/gifts/<int:gift_id>/delete', 'delete_gift', view_func=DeleteGift.as_view('delete_gift'), methods=['POST'])
+app.add_url_rule('/gifts/<int:gift_id>/purchase', 'purchase_gift', view_func=PurchaseGift.as_view('purchase_gift'))
 
 # Error handlers
 

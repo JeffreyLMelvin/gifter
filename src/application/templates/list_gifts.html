@@ -39,7 +39,9 @@
                         {% if gift.purchaser %}
                         <td>Purchased</td>
                         {% else %}
-                        <td>Available</td>
+                        <td>
+                             <a href="{{ url_for('purchase_gift', gift_id=gift_id) }}" class="btn">Available</a>
+                        </td>
                         {% endif %}
                     {% endif %}
                     <td>{{ gift.summary }}</td>

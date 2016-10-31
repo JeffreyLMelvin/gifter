@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from datetime import datetime
+
 from flask.views import View
 
 from flask import flash, redirect, url_for, render_template, request, session
@@ -29,8 +31,10 @@ class EditGift(View):
                         gift.notes = form.data.get('notes')
                         if form.data.get('purchased'):
                             gift.purchaser = ndb.Key(UserModel, session['user']['uid'])
+                            gift.purchase_date = datetime.now()
                         else:
                             gift.purchaser = None
+                            gift.purchase_date = None
 
                     gift.put()
 

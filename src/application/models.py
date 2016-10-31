@@ -29,3 +29,4 @@ class GiftModel(ndb.Model):
     description = ndb.StringProperty(default='')
     notes = ndb.StringProperty(default='')
     purchaser = ndb.KeyProperty(default=None, kind=UserModel)
+    purchase_date = ndb.DatetimeProperty()
