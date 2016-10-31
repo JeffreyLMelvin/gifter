@@ -37,13 +37,12 @@ class DeleteGift(View):
 
                         client = TwilioRestClient(TWILIO_SID, TWILIO_TOKEN)
                         message = client.messages.create(
-                            body="%s %s removed %s from %s %s's list, "
-                                 "which you purchased" % (
-                                    adder.user_first_name,
-                                    adder.user_last_name,
+                            body="An item you purchased (%s) for %s %s was removed by %s %s." % (
                                     gift.summary,
                                     owner.user_first_name,
-                                    owner.user_last_name
+                                    owner.user_last_name,
+                                    adder.user_first_name,
+                                    adder.user_last_name
                                 ),
                             to=purchaser.user_phone,
                             from_='+15153052239'
