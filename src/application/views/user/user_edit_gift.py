@@ -32,7 +32,7 @@ class EditGift(View):
                         if form.data.get('purchased'):
                             gift.purchaser = ndb.Key(UserModel, session['user']['uid'])
                             gift.purchase_date = datetime.now()
-                        elif gift.purchaser
+                        elif gift.purchaser:
                             if session['user']['id'] == gift.purchaser.id():
                                 gift.purchaser = None
                                 gift.purchase_date = None
