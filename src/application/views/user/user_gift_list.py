@@ -23,7 +23,11 @@ class UserGifts(View):
     def dispatch_request(self, user_id):
         user_key = ndb.Key(UserModel, user_id)
         gift_list = GiftModel.query(GiftModel.owner == user_key)
-        owner = UserModel.get_by_id(user_id)
+        #owner = UserModel.get_by_id(user_id)
+
+        registered_users = UserModel.query()
+        households = list(set([x.household for x in registered_users]))
+        owner = filter(lambda x: x.key.id()==user_id)[0]
 
         form = GiftForm()
         if form.validate_on_submit():

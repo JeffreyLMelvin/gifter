@@ -4,7 +4,7 @@ import phonenumbers
 
 from flask.views import View
 
-from flask import flash, redirect, url_for, render_template, request
+from flask import flash, redirect, url_for, render_template, request, session
 
 from forms import UserForm
 from models import UserModel
@@ -16,7 +16,12 @@ class AdminEditUser(View):
 
     @admin_required
     def dispatch_request(self, user_id):
-        user = UserModel.get_by_id(user_id)
+        users = UserModel.query()
+        user = filter(lambda x: x.key.id()==user_id)[0]
+        households = list(set([x.household for x in users]))
+
+        #user = UserModel.get_by_id(user_id)
+
         form = UserForm(obj=user)
         if request.method == "POST":
             if form.validate_on_submit():
@@ -35,4 +40,10 @@ class AdminEditUser(View):
                 user.put()
                 flash(u'User %s successfully saved.' % user_id, 'success')
                 return redirect(url_for('list_users'))
-        return render_template('edit_user.html', user=user, form=form)
+        return render_template(
+            'edit_user.html',
+            user=user,
+            form=form,
+            auth=session.get('user', {}),
+            households=households
+        )

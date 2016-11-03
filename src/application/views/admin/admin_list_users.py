@@ -20,6 +20,7 @@ class AdminListUsers(View):
     @registration_required
     def dispatch_request(self):
         registered_users = UserModel.query()
+        households = list(set(x.user_household for x in registered_users))
         form = UserForm()
         if form.validate_on_submit():
             self.save_entry()
@@ -28,7 +29,8 @@ class AdminListUsers(View):
             users=registered_users,
             form=form,
             auth=session.get('user', {}),
-            is_admin=users.is_current_user_admin()
+            is_admin=users.is_current_user_admin(),
+            households=households
         )
 
     @admin_required
