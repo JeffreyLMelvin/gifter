@@ -105,6 +105,20 @@
                     </div>
                 </div>
                 <div>&nbsp;</div>
+                <div class="control-group">
+                    <div class="control-label">{{ form.user_is_managed.label }}</div>
+                    <div class="controls">
+                        {{ form.user_is_managed|safe }}
+                        {% if form.user_is_managed.errors %}
+                        <ul class="errors">
+                            {% for error in form.user_is_managed.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>&nbsp;</div>
             <div class="control-group">
                 <div class="controls">
                     <input class="btn btn-primary" type="submit" value="Save Changes"/>

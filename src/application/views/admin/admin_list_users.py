@@ -45,7 +45,8 @@ class AdminListUsers(View):
             user_token=form.user_token.data,
             user_household=form.user_household.data.title(),
             user_house_manager=form.user_house_manager.data,
-            user_is_adult=form.user_is_adult.data
+            user_is_adult=form.user_is_adult.data,
+            user_is_managed=form.user_is_managed.data
         )
         try:
             user.put()
@@ -60,7 +61,7 @@ class AdminListUsers(View):
 class AdminFilterUsers(View):
     @registration_required
     def dispatch_request(self, filters):
-        filters = filters.split(',')
+        filters = filters.split('+')
 
         if 'children' in filters:
             filters.remove('children')

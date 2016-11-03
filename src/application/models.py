@@ -19,6 +19,8 @@ class UserModel(ndb.Model):
     user_household = ndb.StringProperty(default='Other')
     user_house_manager = ndb.BooleanProperty(default=False)
     user_is_adult = ndb.BooleanProperty(default=False)
+    # version 4
+    user_is_managed = ndb.BooleanProperty(default=False)
 
 
 
@@ -29,4 +31,4 @@ class GiftModel(ndb.Model):
     description = ndb.StringProperty(default='')
     notes = ndb.StringProperty(default='')
     purchaser = ndb.KeyProperty(default=None, kind=UserModel)
-    purchase_date = ndb.DateTimeProperty()
+    purchase_date = ndb.DateTimeProperty(default=None)
