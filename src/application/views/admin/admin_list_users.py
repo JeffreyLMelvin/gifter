@@ -89,5 +89,6 @@ class AdminFilterUsers(View):
             users=filtered_users,
             form=form,
             auth=session.get('user', {}),
-            is_admin=users.is_current_user_admin()
+            is_admin=users.is_current_user_admin(),
+            households=households
         )
