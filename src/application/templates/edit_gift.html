@@ -7,6 +7,7 @@
         <fieldset>
             {{ form.hidden_tag() }}
             <input type="hidden" name="mode" value="edit" />
+            {% if auth['uid'] == gift.owner.id() %}
             <div class="control-group">
                 <div class="control-label">{{ form.summary.label }}</div>
                 <div class="controls">
@@ -32,6 +33,21 @@
                             {% endfor %}
                         </ul>
                     {% endif %}
+                </div>
+            </div>
+            <div>&nbsp;</div>
+            {% else %}
+            <div class="control-group">
+                <div class="control-label">{{ form.summary.label }}</div>
+                <div>
+                    {{ form.summary|safe }}
+                </div>
+            </div>
+            <div>&nbsp;</div>
+            <div class="control-group">
+                <div class="control-label">{{ form.description.label }}</div>
+                <div>
+                    {{ form.description|safe }}
                 </div>
             </div>
             <div>&nbsp;</div>
