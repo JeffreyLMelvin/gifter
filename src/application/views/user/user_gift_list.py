@@ -25,7 +25,7 @@ class UserGifts(View):
         gift_list = GiftModel.query(GiftModel.owner == user_key)
         #owner = UserModel.get_by_id(user_id)
 
-        registered_users = UserModel.query()
+        registered_users = UserModel.query().order(UserModel.user_last_name)
         households = list(set([x.user_household for x in registered_users]))
         owner = filter(lambda x: x.key.id()==user_id)[0]
 

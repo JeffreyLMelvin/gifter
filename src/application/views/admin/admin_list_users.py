@@ -64,7 +64,7 @@ class AdminFilterUsers(View):
     @registration_required
     def dispatch_request(self, filters):
         filters = filters.split(',')
-        registered_users = UserModel.query()
+        registered_users = UserModel.query().order(UserModel.user_last_name)
         households = list(set([x.user_household for x in registered_users]))
 
         if 'children' in filters:

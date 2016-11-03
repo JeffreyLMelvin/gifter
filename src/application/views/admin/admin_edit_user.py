@@ -16,7 +16,7 @@ class AdminEditUser(View):
 
     @admin_required
     def dispatch_request(self, user_id):
-        users = UserModel.query()
+        users = UserModel.query().order(UserModel.user_last_name)
         user = filter(lambda x: x.key.id()==user_id)[0]
         households = list(set([x.user_household for x in users]))
 
