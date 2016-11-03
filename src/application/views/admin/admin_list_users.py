@@ -76,6 +76,8 @@ class AdminFilterUsers(View):
             if user.user_household in filters:
                 filtered_users.append(user)
 
+        form = UserForm()
+
         return render_template(
             'list_users.html',
             users=filtered_users,
