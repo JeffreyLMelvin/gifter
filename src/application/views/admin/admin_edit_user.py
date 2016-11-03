@@ -18,7 +18,7 @@ class AdminEditUser(View):
     def dispatch_request(self, user_id):
         users = UserModel.query()
         user = filter(lambda x: x.key.id()==user_id)[0]
-        households = list(set([x.household for x in users]))
+        households = list(set([x.user_household for x in users]))
 
         #user = UserModel.get_by_id(user_id)
 

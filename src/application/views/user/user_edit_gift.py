@@ -20,7 +20,7 @@ class EditGift(View):
     @registration_required
     def dispatch_request(self, gift_id):
         registered_users = UserModel.query()
-        households = list(set([x.household for x in registered_users]))
+        households = list(set([x.user_household for x in registered_users]))
 
         gift = GiftModel.get_by_id(gift_id)
         gift.purchased = True if gift.purchaser else False
