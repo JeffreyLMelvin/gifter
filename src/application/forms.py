@@ -21,6 +21,7 @@ class UserForm(wtf.Form):
     user_household = wtf.TextField('Household')
     user_house_manager = wtf.BooleanField('Household Manager')
     user_is_adult = wtf.BooleanField('Adult')
+    user_is_managed = wtf.BooleanField('Managed')
 
 class TokenForm(wtf.Form):
     user_phone = wtf.TextField('Phone Number')
