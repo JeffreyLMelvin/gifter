@@ -66,7 +66,7 @@ class EditGift(View):
 
                 if session['user']['uid'] != gift.owner.id():
                     gift.notes = form.data.get('notes')
-                    if form.data.get('purchased'):
+                    if form.data.get('purchased') and not gift.purchaser:
                         gift.purchaser = ndb.Key(UserModel, session['user']['uid'])
                         gift.purchase_date = datetime.now()
                     elif gift.purchaser:
