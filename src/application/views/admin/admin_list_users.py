@@ -65,7 +65,7 @@ class AdminFilterUsers(View):
     def dispatch_request(self, filters):
         filters = filters.split(',')
         registered_users = UserModel.query()
-        households = list(set([x.household for x in users]))
+        households = list(set([x.household for x in registered_users]))
 
         if 'children' in filters:
             filters.remove('children')
