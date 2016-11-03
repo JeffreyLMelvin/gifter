@@ -46,22 +46,22 @@
         </fieldset>
     </form>
     {% else %}
+    <div>
+        <div class="control-label">{{ form.summary.label }}</div>
+        <div>
+            {{ form.summary|safe }}
+        </div>
+    </div>
+    <div>&nbsp;</div>
+    <div>
+        <div class="control-label">{{ form.description.label }}</div>
+        <div>
+            {{ form.description|safe }}
+        </div>
+    </div>
+    <div>&nbsp;</div>
     <form id="edit-user" class="well"
           action="{{ url_for('edit_gift', gift_id=gift.key.id()) }}" method="post" accept-charset="utf-8">
-            <div>
-                <div class="control-label">{{ form.summary.label }}</div>
-                <div>
-                    {{ form.summary|safe }}
-                </div>
-            </div>
-            <div>&nbsp;</div>
-            <div>
-                <div class="control-label">{{ form.description.label }}</div>
-                <div>
-                    {{ form.description|safe }}
-                </div>
-            </div>
-            <div>&nbsp;</div>
         <fieldset>
             {{ form.hidden_tag() }}
             <input type="hidden" name="mode" value="edit" />
