@@ -55,3 +55,31 @@ class AdminListUsers(View):
         except CapabilityDisabledError:
             flash(u'App Engine Datastore is currently in read-only mode.', 'info')
             return redirect(url_for('list_users'))
+
+
+class AdminFilterUsers(View):
+    @registration_required
+    def dispatch_request(self, filters):
+        filters = filters.split(',')
+
+        if 'children' in filters:
+            filters.remove('children')
+            registered_users = UserModel.query(UserModel.user_is_adult == False)
+        elif 'adults' in filters:
+            filters.remove('adults')
+            registered_users = UserModel.query(UserModel.user_is_adult == True)
+        else:
+            registered_users = UserModel.query()
+
+        filtered_users = []
+        for user in registered_users:
+            if user.user_household in filters:
+                filtered_users.append(user)
+
+        return render_template(
+            'list_users.html',
+            users=filtered_users,
+            form=form,
+            auth=session.get('user', {}),
+            is_admin=users.is_current_user_admin()
+        )

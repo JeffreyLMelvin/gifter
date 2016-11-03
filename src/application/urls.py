@@ -13,6 +13,7 @@ from application.views.public.public_index import PublicIndex
 from application.views.public.public_login import PublicLogin, PublicValidateToken
 
 from application.views.admin.admin_list_users import AdminListUsers
+from application.views.admin.admin_list_users import AdminFilterUsers
 from application.views.admin.admin_edit_user import AdminEditUser
 from application.views.admin.admin_delete_user import AdminDeleteUser
 from application.views.admin.admin_login import AdminSecret
@@ -33,6 +34,7 @@ app.add_url_rule('/login', 'login', view_func=PublicLogin.as_view('login'), meth
 app.add_url_rule('/login/<user_token>', 'validate', view_func=PublicValidateToken.as_view('validate_get'), methods=['GET', 'POST'])
 
 app.add_url_rule('/registry', 'list_users', view_func=AdminListUsers.as_view('list_users'), methods=['GET', 'POST'])
+app.add_url_rule('/registry/<filters>, filter_users', view_func=AdminFilterUsers.as_view('filter_users'))
 app.add_url_rule('/registry/<int:user_id>/edit', 'edit_user', view_func=AdminEditUser.as_view('edit_user'), methods=['GET', 'POST'])
 app.add_url_rule('/registry/<int:user_id>/delete', 'delete_user', view_func=AdminDeleteUser.as_view('delete_user'), methods=['POST'])
 
