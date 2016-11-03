@@ -44,13 +44,13 @@ class EditGift(View):
 
                         client = TwilioRestClient(TWILIO_SID, TWILIO_TOKEN)
                         message = client.messages.create(
-                            body="An item you purchased (%s) for %s %s was updated by %s %s. %s" % (
+                            body="%s. An item you purchased (%s) for %s %s was updated by %s %s." % (
+                                request.url_root.rstrip('/') + url_for('edit_gift', gift_id=gift.key.id()),
                                 gift.summary,
                                 owner.user_first_name,
                                 owner.user_last_name,
                                 adder.user_first_name,
-                                adder.user_last_name,
-                                request.url_root.rstrip('/') + url_for('edit_gift', gift_id=gift.key.id())
+                                adder.user_last_name
                             ),
                             to=purchaser.user_phone,
                             from_='+15153052239'
@@ -66,9 +66,10 @@ class EditGift(View):
 
                 if session['user']['uid'] != gift.owner.id():
                     gift.notes = form.data.get('notes')
-                    if form.data.get('purchased') and not gift.purchaser:
-                        gift.purchaser = ndb.Key(UserModel, session['user']['uid'])
-                        gift.purchase_date = datetime.now()
+                    if form.data.get('purchased'):
+                        if not gift.purchaser:
+                            gift.purchaser = ndb.Key(UserModel, session['user']['uid'])
+                            gift.purchase_date = datetime.now()
                     elif gift.purchaser:
                         if session['user']['id'] == gift.purchaser.id():
                             gift.purchaser = None
