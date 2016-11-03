@@ -27,7 +27,7 @@ class UserGifts(View):
 
         registered_users = UserModel.query().order(UserModel.user_last_name)
         households = list(set([x.user_household for x in registered_users]))
-        owner = filter(lambda x: x.key.id()==user_id)[0]
+        owner = filter(lambda x: x.key.id()==user_id, registered_users)[0]
 
         form = GiftForm()
         if form.validate_on_submit():
