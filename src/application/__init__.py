@@ -35,10 +35,14 @@ else:
 app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
 import bleach
- 
+
+def set_target(attrs, new=False):
+    attrs['target'] = '_blank'
+    return attrs
+
 @app.template_filter('linkify')
 def linkify(s):
-    return bleach.linkify(s)
+    return bleach.linkify(s, [set_target])
 
 # Pull in URL dispatch routes
 import urls
