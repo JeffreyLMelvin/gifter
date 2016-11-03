@@ -2,13 +2,12 @@
 
 {% block content %}
     <h3>Edit Gift</h3>
-    
-    {% if auth['uid'] == gift.owner.id() %}
     <form id="edit-user" class="well"
           action="{{ url_for('edit_gift', gift_id=gift.key.id()) }}" method="post" accept-charset="utf-8">
         <fieldset>
             {{ form.hidden_tag() }}
             <input type="hidden" name="mode" value="edit" />
+            {% if auth['uid'] == gift.owner.id() %}
             <div class="control-group">
                 <div class="control-label">{{ form.summary.label }}</div>
                 <div class="controls">
@@ -37,34 +36,7 @@
                 </div>
             </div>
             <div>&nbsp;</div>
-            <div class="control-group">
-                <div class="controls">
-                    <input class="btn btn-primary" type="submit" value="Save Changes"/>
-                    <a class="btn cancel" href="{{ url_for('gift_list', user_id=gift.owner.id()) }}">Cancel</a>
-                </div>
-            </div>
-        </fieldset>
-    </form>
-    {% else %}
-    <div>
-        <div class="control-label">{{ form.summary.label }}</div>
-        <div>
-            {{ form.summary|safe }}
-        </div>
-    </div>
-    <div>&nbsp;</div>
-    <div>
-        <div class="control-label">{{ form.description.label }}</div>
-        <div>
-            {{ form.description|safe }}
-        </div>
-    </div>
-    <div>&nbsp;</div>
-    <form id="edit-user" class="well"
-          action="{{ url_for('edit_gift', gift_id=gift.key.id()) }}" method="post" accept-charset="utf-8">
-        <fieldset>
-            {{ form.hidden_tag() }}
-            <input type="hidden" name="mode" value="edit" />
+            {% else %}
             <div class="control-group">
                 <div class="control-label">{{ form.notes.label }}</div>
                 <div class="controls">
@@ -93,6 +65,7 @@
                 </div>
             </div>
             <div>&nbsp;</div>
+            {% endif %}
             <div class="control-group">
                 <div class="controls">
                     <input class="btn btn-primary" type="submit" value="Save Changes"/>
@@ -101,5 +74,4 @@
             </div>
         </fieldset>
     </form>
-    {% endif %} 
 {% endblock content %}
