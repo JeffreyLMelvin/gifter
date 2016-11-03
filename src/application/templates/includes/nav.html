@@ -28,8 +28,8 @@
         <ul class="dropdown-menu">
           <li><a href="{{ url_for('filter_users', filters='{{ household }}') }}">All</a></li>
           <li class="divider"></li>
-          <li><a href="{{ url_for('filter_users', filters='{{ household }}+adults') }}">Adults</a></li>
-          <li><a href="{{ url_for('filter_users', filters='{{ household }}+children') }}">Children</a></li>
+          <li><a href="{{ url_for('filter_users', filters='{{ household }},adults') }}">Adults</a></li>
+          <li><a href="{{ url_for('filter_users', filters='{{ household }},children') }}">Children</a></li>
         </ul>
       </li>
       {% endfor %}

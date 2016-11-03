@@ -63,16 +63,16 @@ class AdminListUsers(View):
 class AdminFilterUsers(View):
     @registration_required
     def dispatch_request(self, filters):
-        filters = filters.split('+')
+        filters = filters.split(',')
+        registered_users = UserModel.query()
+        households = list(set([x.household for x in users]))
 
         if 'children' in filters:
             filters.remove('children')
-            registered_users = UserModel.query(UserModel.user_is_adult == False)
+            registered_users = filter(lambda x: x.user_is_adult == False, registered_users)
         elif 'adults' in filters:
             filters.remove('adults')
-            registered_users = UserModel.query(UserModel.user_is_adult == True)
-        else:
-            registered_users = UserModel.query()
+            registered_users = filter(lambda x: x.user_is_adult == True, registered_users)
 
         filtered_users = []
         if not filters:
