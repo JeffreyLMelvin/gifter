@@ -53,5 +53,6 @@ class UserGifts(View):
             gifts=gift_list,
             form=form,
             auth=session.get('user', {}),
-            owner=owner
+            owner=owner,
+            households=households
         )
