@@ -44,10 +44,10 @@
                         </td>
                         {% endif %}
                     {% endif %}
-                    <td>{{ gift.summary }}</td>
-                    <td>{{ gift.description }}</td>
+                    <td>{{ gift.summary|linkify|safe }}</td>
+                    <td>{{ gift.description|linkify|safe }}</td>
                     {% if owner_id != auth_id %}
-                    <td>{{ gift.notes }}</td>
+                    <td>{{ gift.notes|linkify|safe }}</td>
                     {% endif %}
 
                     {% if add_id == auth_id %}
