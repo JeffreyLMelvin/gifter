@@ -73,9 +73,12 @@ class AdminFilterUsers(View):
             registered_users = UserModel.query()
 
         filtered_users = []
-        for user in registered_users:
-            if user.user_household in filters:
-                filtered_users.append(user)
+        if not filters:
+            filtered_users = registered_users
+        else:
+            for user in registered_users:
+                if user.user_household in filters:
+                    filtered_users.append(user)
 
         form = UserForm()
 

@@ -31,6 +31,7 @@ class AdminEditUser(View):
                 user.user_household = form.data.get('user_household')
                 user.user_house_manager = form.data.get('user_house_manager')
                 user.user_is_adult = form.data.get('user_is_adult')
+                user.user_is_managed = form.data.get('user_is_managed')
                 user.put()
                 flash(u'User %s successfully saved.' % user_id, 'success')
                 return redirect(url_for('list_users'))
