@@ -58,6 +58,12 @@ class EditGift(View):
 
                     gift.summary = form.data.get('summary')
                     gift.description = form.data.get('description')
+                    flash(u'Gift %s successfully saved.' % gift_id, 'success')
+
+                elif form.data.get('summary') != gift.summary or form.data.get('description') != gift.description:
+                    flash(u"You can't edit a gift you didn't add.", 'warning')
+
+
                 if session['user']['uid'] != gift.owner.id():
                     gift.notes = form.data.get('notes')
                     if form.data.get('purchased'):
@@ -69,12 +75,11 @@ class EditGift(View):
                             gift.purchase_date = None
                         else:
                             flash(u"You can't unclaim a gift you didn't mark as purchased.", 'warning')
+                    flash(u'Notes for gift %s successfully saved.' % gift_id, 'success')
 
-                    gift.put()
-
-                    flash(u'Gift %s successfully saved.' % gift_id, 'success')
-                else:
-                    flash(u"You can't edit a gift you didn't add.", 'warning')
+                gift.put()
+                
+                    
                 return redirect(url_for('gift_list', user_id=gift.owner.id()))
         return render_template(
             'edit_gift.html',
