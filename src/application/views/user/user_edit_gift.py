@@ -50,7 +50,7 @@ class EditGift(View):
                                 owner.user_last_name,
                                 adder.user_first_name,
                                 adder.user_last_name,
-                                url_for('edit_gift', gift_id=gift.key.id())
+                                request.url_root.rstrip('/') + url_for('edit_gift', gift_id=gift.key.id())
                             ),
                             to=purchaser.user_phone,
                             from_='+15153052239'
