@@ -60,9 +60,8 @@ class EditGift(View):
                     gift.description = form.data.get('description')
                     flash(u'Gift %s successfully saved.' % gift_id, 'success')
 
-                elif form.data.get('summary') != gift.summary or form.data.get('description') != gift.description:
-                    flash(u"You can't edit a gift you didn't add.", 'warning')
-
+                #elif form.data.get('summary') != gift.summary or form.data.get('description') != gift.description:
+                #    flash(u"You can't edit a gift you didn't add.", 'warning')
 
                 if session['user']['uid'] != gift.owner.id():
                     gift.notes = form.data.get('notes')
@@ -71,7 +70,7 @@ class EditGift(View):
                             gift.purchaser = ndb.Key(UserModel, session['user']['uid'])
                             gift.purchase_date = datetime.now()
                     elif gift.purchaser:
-                        if session['user']['id'] == gift.purchaser.id():
+                        if session['user']['uid'] == gift.purchaser.id():
                             gift.purchaser = None
                             gift.purchase_date = None
                         else:
